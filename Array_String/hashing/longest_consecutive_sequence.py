@@ -1,3 +1,7 @@
+'''
+Intuition: think of as number line 
+if a element is starting point it would not have a left start.
+'''
 from typing import List
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
