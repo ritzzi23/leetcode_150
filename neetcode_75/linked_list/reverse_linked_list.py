@@ -24,5 +24,5 @@ class Solution:
 
         
 head = [0,1,2,3]
-a = reverseList()
-print(a.rotate(head))        
+a = Solution()
+print(a.reverseList(head))        
