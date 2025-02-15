@@ -7,19 +7,11 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
         if not root:
             return None
         
-        # Swap the children
-        tmp = root.left
-        root.left = root.right
-        root.right = tmp
-        
-        # Recursively invert the left and right subtrees
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        return root
     
     def createTree(self, values: List[int]) -> Optional[TreeNode]:
         """Create a binary tree from a list of values (level-order traversal)."""
@@ -71,16 +63,16 @@ class Solution:
 
 # Example usage
 if __name__ == "__main__":
-    values = [1, 2, 3, 4, 5, 6, 7]
+    root = [1,2,3,4,5,6,7]
     solution = Solution()
     
     # Create the tree from list
-    root = solution.createTree(values)
+    root = solution.createTree(root)
     
     # Invert the tree
-    inverted = solution.invertTree(root)
+    inverted = solution.levelOrder(root)
     
     # Convert back to list for visualization
     result = solution.treeToList(inverted)
-    print(f"Original tree: {values}")
+    print(f"Original tree: {root}")
     print(f"Inverted tree: {result}")
