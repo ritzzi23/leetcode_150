@@ -7,32 +7,14 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         if not root:
             return []
+        result += self.postorderTraversal(root.left)
+        result += self.postorderTraversal(root.right)
         result.append(root.val)
-        result += self.preorderTraversal(root.left)
-        result += self.preorderTraversal(root.right)
-
-        return result      
-
-
-
-
-    def inorderTraversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-        stack = []
-        curr = root
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            result.append(curr)
-            curr = curr.right
-        return result 
-
+        return result
 
     def createTree(self, values: List[int]) -> Optional[TreeNode]:
         """Create a binary tree from a list of values (level-order traversal)."""
@@ -90,12 +72,12 @@ if __name__ == "__main__":
     # Create the tree from list
     root = solution.createTree(values)
     
-    # Get preorder traversal
-    preorder_result = solution.preorderTraversal(root)
+    # Get postorder traversal
+    postorder_result = solution.postorderTraversal(root)
     
     # Convert tree to list for visualization
     tree_list = solution.treeToList(root)
     
     # Print results
     print(f"Original tree (level-order): {tree_list}")
-    print(f"preorder traversal: {preorder_result}")
+    print(f"Inorder traversal: {postorder_result}")
