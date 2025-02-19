@@ -7,7 +7,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal_recursive(self, root: Optional[TreeNode]) -> List[int]:
         """Perform inorder traversal of the tree."""
         result = []
         def inorder(node):
@@ -17,6 +17,23 @@ class Solution:
                 inorder(node.right)
         inorder(root)
         return result
+    
+
+
+    
+    def inorderTraversal_iterative(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        stack = []
+        curr = root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            result.append(curr)
+            curr = curr.right
+        return result 
+
 
     def createTree(self, values: List[int]) -> Optional[TreeNode]:
         """Create a binary tree from a list of values (level-order traversal)."""

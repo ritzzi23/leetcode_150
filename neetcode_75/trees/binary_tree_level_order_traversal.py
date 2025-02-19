@@ -1,4 +1,5 @@
 from typing import List, Optional
+from collections import deque
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -10,8 +11,24 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         
         if not root:
-            return None
-        
+            return []
+        result = []
+        level = 0
+        q = deque([root])
+        while q:
+            semi_result = []
+            for i in range(len(q)):
+                node = q.popleft()
+                semi_result.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            level += 1
+            result.append(semi_result)
+        return result
+
+
     
     def createTree(self, values: List[int]) -> Optional[TreeNode]:
         """Create a binary tree from a list of values (level-order traversal)."""
