@@ -13,13 +13,13 @@ You can return the answer in any order.'''
 #Brute_force:
 class Solution:
     def twoSum_brute_force(self, nums: list[int], target: int) -> list[int]:
-        
         for i in range(len(nums)):
-            current_sum = 0
-            for j in range(i,len(nums)):
-                current_sum = nums[i] + nums[j]
-                if (target == current_sum):
-                    return [i+1,j+1]
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        
+        # Return an empty list if no solution is found
+        return []
                 
 #Dictionary_Approach:
     def twoSum_dictionary_approach(self, nums: list[int], target: int) -> list[int]:
@@ -28,8 +28,9 @@ class Solution:
             remaining = target - elem 
 
             if remaining in nums_maps:
-                return nums_maps[remaining]+1, index+1
+                return nums_maps[remaining], index
             nums_maps[elem] = index
+        return []
 
 #Two_pointer_Approach:
     def twoSum_two_pointer_approach(self, nums: list[int], target: int) -> list[int]:

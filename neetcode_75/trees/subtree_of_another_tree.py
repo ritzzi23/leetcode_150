@@ -6,6 +6,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+#Time: O(m * n)
+#Space: O(m + n)
+
 class Solution:   
     def isSameTree(self,root,subRoot):
         if not root and not subRoot:
